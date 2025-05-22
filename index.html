@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>Suikachu Coin - SUIKA SUIKA SUIKACHUUUU!</title>
+    <link rel="icon" href="assets/4.jpg" type="image/jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/anime-ace" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f7e7bc, #f4d03f, #e74c3c) !important;
+            color: #fff !important;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: none; /* Hide default cursor */
+        }
+
+        /* Lightning Cursor Styles */
+        .lightning-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            width: 30px;
+            height: 30px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23ffd700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 14 11 2 13 8 19 2 13 14 15 8 9 14 11 8 5 14"/></svg>') no-repeat center;
+            background-size: contain;
+            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.9));
+            animation: flicker 0.1s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* Trailing Spark Styles */
+        .spark {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: #ffd700;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.9);
+            animation: sparkFade 0.5s linear forwards;
+        }
+
+        @keyframes sparkFade {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.5) translateY(10px); }
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.9) contrast(1.4);
+            transform: scale(1.05);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5) !important;
+            z-index: 2;
+            animation: pulseOverlay 4s infinite ease-in-out;
+        }
+
+        @keyframes pulseOverlay {
+            0% { opacity: 0.5; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.5; }
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            z-index: 3;
+            padding: 0 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .logo {
+            width: 850px;
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.9));
+            animation: mangaZoom 1.5s infinite ease-in-out;
+            z-index: 4;
+        }
+
+        @keyframes mangaZoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .sparkle {
+            position: absolute;
+            font-size: 2.5rem;
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+            animation: sparkleTwinkle 1.8s infinite alternate;
+            z-index: 3;
+        }
+
+        .sparkle:nth-child(1) { top: -10px; left: 5%; }
+        .sparkle:nth-child(2) { bottom: -10px; right: 5%; }
+        .sparkle:nth-child(3) { top: 50%; left: -20px; }
+        .sparkle:nth-child(4) { top: 50%; right: -20px; }
+
+        @keyframes sparkleTwinkle {
+            0% { opacity: 0.5; transform: rotate(0deg) scale(1); }
+            100% { opacity: 1; transform: rotate(45deg) scale(1.2); }
+        }
+
+        .suikachu-bubble {
+            position: absolute;
+            background: #fff;
+            color: #e74c3c !important;
+            font-family: 'Anime Ace', 'Roboto', sans-serif;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 8px 15px;
+            border-radius: 15px;
+            border: 2px solid #f4d03f;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: bubbleFloat 2.5s infinite ease-in-out;
+            z-index: 5;
+        }
+
+        .suikachu-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top: 5px solid #fff;
+        }
+
+        .suikachu-bubble:nth-child(1) { top: -60px; left: 10%; }
+        .suikachu-bubble:nth-child(2) { bottom: -60px; right: 10%; }
+        .suikachu-bubble:nth-child(3) { top: 20%; right: -60px; }
+
+        .action-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            z-index: 4;
+            position: relative;
+        }
+
+        .buy-button {
+            display: inline-flex;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #e74c3c, #f4d03f) !important;
+            color: #fff !important;
+            font-family: 'Anime Ace', 'Roboto', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            border-radius: 10px;
+            border: 3px solid #fff;
+            text-decoration: none;
+            box-shadow: 0 0 25px rgba(231, 76, 60, 0.9);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .buy-button i {
+            font-size: 1.5rem;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 35px rgba(231, 76, 60, 1);
+        }
+
+        .buy-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .buy-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .contract-address {
+            font-size: 1rem;
+            word-break: break-all;
+            background: rgba(0, 0, 0, 0.9) !important;
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            cursor: none; /* Ensure custom cursor applies */
+            border: 3px solid #f7e7bc;
+            box-shadow: 0 0 25px rgba(247, 231, 188, 0.8);
+            transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+            font-family: 'Anime Ace', 'Roboto', sans-serif;
+            color: #fff !important;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.7) !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+            position: relative;
+            z-index: 4;
+        }
+
+        .contract-address i {
+            font-size: 1.2rem;
+        }
+
+        .contract-address:hover {
+            background: rgba(0, 0, 0, 1) !important;
+            box-shadow: 0 0 35px rgba(247, 231, 188, 1);
+            transform: translateY(-5px);
+        }
+
+        .speech-bubble {
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%) translateX(20px);
+            background: #fff;
+            color: #e74c3c !important;
+            font-family: 'Anime Ace', 'Roboto', sans-serif;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+            border-radius: 15px;
+            border: 2px solid #f4d03f;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: bubbleFloat 3s infinite ease-in-out;
+            z-index: 5;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 5px solid transparent;
+            border-right: 5px solid #fff;
+        }
+
+        @keyframes bubbleFloat {
+            0% { transform: translateY(-50%) translateX(20px) translateY(0); }
+            50% { transform: translateY(-50%) translateX(20px) translateY(-10px); }
+            100% { transform: translateY(-50%) translateX(20px) translateY(0); }
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 50px 20px;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section {
+            margin: 30px 0;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.9) !important;
+            border-radius: 15px;
+            border: 2px solid #fff;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, opacity 0.3s ease !important;
+            width: 100%;
+            max-width: 700px;
+            position: relative;
+            z-index: 3;
+            text-align: center;
+        }
+
+        .section:not(.visible) {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .section.visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        .section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 35px rgba(244, 208, 63, 1);
+        }
+
+        .section h2 {
+            font-family: 'Anime Ace', 'Roboto', sans-serif;
+            font-size: 1.8rem;
+            color: #f4d03f !important;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(244, 208, 63, 0.9) !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(244, 208, 63, 0.5);
+            z-index: 4;
+        }
+
+        .speech-text {
+            position: relative;
+            background: #fff;
+            color: #e74c3c !important;
+            font-family: 'Anime Ace', 'Roboto', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            padding: 10px 15px;
+            border-radius: 15px;
+            border: 2px solid #f4d03f;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin: 10px 0;
+            text-align: left;
+            z-index: 4;
+        }
+
+        .speech-text::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border: 5px solid transparent;
+            border-top: 5px solid #fff;
+        }
+
+        .speech-text.alt::after {
+            left: auto;
+            right: 20px;
+            border-top: 5px solid #fff;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .section li {
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .section li .speech-text {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .section li .speech-text i {
+            font-size: 1.2rem;
+            color: #e74c3c;
+            margin-top: 5px;
+        }
+
+        .section.nft-minting, .section.partnership {
+            background: rgba(0, 0, 0, 0.9) !important;
+            border: 3px solid transparent;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section.nft-minting::before, .section.partnership::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #e74c3c, #f7e7bc) !important;
+            z-index: -1;
+            border-radius: 23px;
+        }
+
+        .section.nft-minting h2, .section.partnership h2 {
+            font-size: 3rem;
+            color: #fff !important;
+            text-shadow: 
+                0 0 10px rgba(231, 76, 60, 1),
+                0 0 20px rgba(247, 231, 188, 1),
+                0 0 30px rgba(231, 76, 60, 0.8),
+                0 0 40px rgba(247, 231, 188, 0.8) !important;
+            padding: 15px 25px;
+            box-shadow: none;
+            position: relative;
+            animation: neonGlow 1.5s infinite alternate;
+        }
+
+        .section.nft-minting h2::before, .section.partnership h2::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(231, 76, 60, 0.3), transparent);
+            opacity: 0.5;
+            z-index: -1;
+            animation: glowPulse 2s infinite alternate;
+        }
+
+        @keyframes neonGlow {
+            0% { 
+                text-shadow: 
+                    0 0 10px rgba(231, 76, 60, 0.7),
+                    0 0 20px rgba(247, 231, 188, 0.7),
+                    0 0 30px rgba(231, 76, 60, 0.5),
+                    0 0 40px rgba(247, 231, 188, 0.5);
+                opacity: 0.9;
+            }
+            100% { 
+                text-shadow: 
+                    0 0 15px rgba(231, 76, 60, 1),
+                    0 0 30px rgba(247, 231, 188, 1),
+                    0 0 45px rgba(231, 76, 60, 0.8),
+                    0 0 60px rgba(247, 231, 188, 0.8);
+                opacity: 1;
+            }
+        }
+
+        @keyframes glowPulse {
+            0% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .nft-starburst, .partnership-starburst {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ffd700, transparent);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: burstPulse 1.5s infinite ease-in-out;
+            z-index: 3;
+        }
+
+        .comic-burst {
+            position: absolute;
+            top: -25px;
+            right: -25px;
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle, #ffd700, transparent);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: burstPulse 1.8s infinite ease-in-out;
+            z-index: 3;
+        }
+
+        @keyframes burstPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .partnership-video, .section-video {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 3px solid #f4d03f;
+            box-shadow: 0 0 15px rgba(244, 208, 63, 0.8);
+        }
+
+        .section-image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 3px solid #f4d03f;
+            box-shadow: 0 0 15px rgba(244, 208, 63, 0.8);
+        }
+
+        .tweet-card {
+            display: inline-block;
+            background: #fff;
+            border: 2px solid #f4d03f;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
+            max-width: 500px;
+            width: 100%;
+            text-align: left;
+            text-decoration: none;
+            color: #000 !important;
+            font-family: 'Roboto', sans-serif;
+            box-shadow: 0 0 15px rgba(244, 208, 63, 0.8);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tweet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(244, 208, 63, 1);
+        }
+
+        .tweet-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tweet-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: url('https://pbs.twimg.com/profile_images/1924420195696685056/zyi7aWsq_400x400.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff !important;
+        }
+
+        .tweet-user {
+            font-weight: bold;
+            color: #e74c3c !important;
+        }
+
+        .tweet-handle {
+            color: #666 !important;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+            z-index: 3;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #f7e7bc, #e74c3c) !important;
+            border-radius: 50%;
+            line-height: 60px;
+            text-align: center;
+            color: #fff !important;
+            font-size: 30px;
+            box-shadow: 0 0 25px rgba(247, 231, 188, 0.9);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 4;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 0 35px rgba(247, 231, 188, 1);
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .social-links a:hover::before {
+            width: 150px;
+            height: 150px;
+        }
+
+        .manga-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 8px,
+                rgba(255, 215, 0, 0.3) 8px,
+                rgba(255, 215, 0, 0.3) 10px
+            );
+            opacity: 0.4;
+            animation: linesMove 8s linear infinite;
+        }
+
+        @keyframes linesMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 80px 80px; }
+        }
+
+        .comic-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            border: 5px solid #fff;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+            opacity: 0.2;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 15px;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .action-container {
+                align-items: center;
+            }
+
+            .logo {
+                width: 580px;
+            }
+
+            .sparkle {
+                font-size: 2rem;
+            }
+
+            .suikachu-bubble {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+
+            .suikachu-bubble:nth-child(1) { top: -50px; left: 5%; }
+            .suikachu-bubble:nth-child(2) { bottom: -50px; right: 5%; }
+            .suikachu-bubble:nth-child(3) { top: 15%; right: -50px; }
+
+            .buy-button {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .buy-button i {
+                font-size: 1.2rem;
+            }
+
+            .contract-address {
+                font-size: 0.9rem;
+                padding: 12px;
+                max-width: 90%;
+                background: rgba(0, 0, 0, 0.9) !important;
+            }
+
+            .contract-address i {
+                font-size: 1rem;
+            }
+
+            .speech-bubble {
+                font-size: 0.8rem;
+                padding: 8px 15px;
+                transform: translateY(-50%) translateX(15px);
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .section {
+                padding: 25px;
+                margin: 25px 0;
+                max-width: 90%;
+                background: rgba(0, 0, 0, 0.9) !important;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .speech-text {
+                font-size: 1rem;
+                padding: 8px 12px;
+            }
+
+            .section.nft-minting h2, .section.partnership h2 {
+                font-size: 2rem;
+                padding: 10px 15px;
+            }
+
+            .comic-burst, .nft-starburst, .partnership-starburst {
+                width: 60px;
+                height: 60px;
+            }
+
+            .partnership-video, .section-video {
+                max-width: 100%;
+            }
+
+            .section-image {
+                max-width: 250px;
+            }
+
+            .tweet-card {
+                max-width: 90%;
+            }
+
+            .social-links a {
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                font-size: 25px;
+            }
+
+            .lightning-cursor {
+                width: 25px;
+                height: 25px;
+            }
+
+            .spark {
+                width: 4px;
+                height: 4px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content {
+                flex-direction: column;
+            }
+
+            .logo {
+                width: 520px;
+            }
+
+            .sparkle {
+                font-size: 1.5rem;
+            }
+
+            .suikachu-bubble {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+
+            .suikachu-bubble:nth-child(1) { top: -40px; left: 0; }
+            .suikachu-bubble:nth-child(2) { bottom: -40px; right: 0; }
+            .suikachu-bubble:nth-child(3) { top: 10%; right: -40px; }
+
+            .buy-button {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+
+            .buy-button i {
+                font-size: 1rem;
+            }
+
+            .contract-address {
+                font-size: 0.8rem;
+                padding: 10px;
+                background: rgba(0, 0, 0, 0.9) !important;
+            }
+
+            .speech-bubble {
+                font-size: 0.7rem;
+                padding: 6px 12px;
+                transform: translateY(-50%) translateX(10px);
+            }
+
+            .section h2 {
+                font-size: 1.2rem;
+            }
+
+            .speech-text {
+                font-size: 0.9rem;
+                padding: 6px 10px;
+            }
+
+            .section.nft-minting h2, .section.partnership h2 {
+                font-size: 1rem;
+                /* padding: 8px 12px; */
+            }
+
+            .comic-burst, .nft-starburst, .partnership-starburst {
+                width: 50px;
+                height: 50px;
+            }
+
+            .section-image {
+                max-width: 200px;
+            }
+
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 20px;
+            }
+
+            .lightning-cursor {
+                width: 20px;
+                height: 20px;
+            }
+
+            .spark {
+                width: 3px;
+                height: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="manga-lines"></div>
+    <div class="comic-panel"></div>
+    <div class="lightning-cursor" id="lightning-cursor"></div>
+    <div class="hero">
+        <video class="hero-video" autoplay muted loop>
+            <source src="assets/02.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="logo-container">
+                <i class="fas fa-star sparkle"></i>
+                <i class="fas fa-star sparkle"></i>
+                <img src="./assets/logo.png" alt="Suikachu Coin Logo" class="logo">
+                <i class="fas fa-star sparkle"></i>
+                <i class="fas fa-star sparkle"></i>
+                <div class="suikachu-bubble">SUIKACHU!</div>
+                <div class="suikachu-bubble">SUIKACHU!</div>
+                <div class="suikachu-bubble">SUIKACHU!</div>
+            </div>
+            <div class="action-container">
+                <a href="#" class="buy-button"><i class="fas fa-shopping-cart"></i> BUY</a>
+                <div class="contract-address">
+                    <i class="fas fa-file-code"></i> CA: 0x6f2071362016c6db900dfc95feba3169fa1ca006d097646ca6a522549873c6aa::suichu::SUICHU
+                    <div class="speech-bubble">Click to Copy!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="section partnership">
+            <h2><i class="fas fa-handshake"></i> PARTNERSHIP ANNOUNCEMENT</h2>
+            <div class="speech-text"><i class="fas fa-star"></i> We're thrilled to announce our long-term partnership with $PSY and $POKE!</div>
+            <a href="https://x.com/PsyduckSui/status/1924882479883677784" target="_blank" class="tweet-card">
+                <div class="tweet-header">
+                    <div class="tweet-icon"></div>
+                    <div>
+                        <span class="tweet-user">PsyDuck | PokeVerse $PSY $POKE</span><br>
+                        <span class="tweet-handle">@PsyduckSui</span>
+                    </div>
+                </div>
+                <video class="partnership-video" autoplay muted loop>
+                    <source src="assets/01.mp4" type="video/mp4">
+                </video>
+            </a>
+            <div class="partnership-starburst"></div>
+        </div>
+        <div class="section">
+            <h2><i class="fas fa-info-circle"></i> ABOUT</h2>
+            <div class="speech-text"><i class="fas fa-star"></i> SUIKA SUIKA SUIKAChUUUU !! Born on Suichain, built different.</div>
+            <div class="speech-text alt"><i class="fas fa-fire"></i> I didn’t come to fit in. I came to electrify the entire chain !</div>
+            <img src="assets/1.jpg" alt="About Image" class="section-image">
+            <div class="speech-text"><i class="fas fa-clock"></i> If you’re early, you’re lucky.</div>
+            <div class="speech-text alt"><i class="fas fa-hourglass-end"></i> If you’re late… well, try not to get shocked.</div>
+            <video class="section-video" autoplay muted loop>
+                <source src="assets/04.mp4" type="video/mp4">
+            </video>
+            <div class="speech-text"><i class="fas fa-rocket"></i> $SUIKACHU is live.</div>
+            <div class="speech-text alt"><i class="fas fa-plug"></i> Plug in, or stay in the dark.</div>
+            <div class="comic-burst"></div>
+        </div>
+        <div class="section">
+            <h2><i class="fas fa-users"></i> $SUIKACHU MEMEWALL</h2>
+            <div class="speech-text"><i class="fas fa-coins"></i> $SUIKACHU $SUIKACHU $SUIKACHU $SUIKACHU $SUIKACHU $SUIKACHU</div>
+            <div class="speech-text alt"><i class="fas fa-coins"></i> $SUIKACHU $SUIKACHU $SUIKACHU $SUIKACHU $SUIKACHU $SUIKACHU</div>
+            <img src="assets/2.jpg" alt="Memewall Image" class="section-image">
+            <div class="speech-text"><i class="fas fa-handshake"></i> SUIKACHU, THIS AIN’T JUST A COIN, WE ARE BUILDING A COMMUNITY ON SUICHAIN.</div>
+            <div class="speech-text alt"><i class="fas fa-flag-checkered"></i> OUR GOAL IS TO SET THE TREND AND CREATE A TRUE</div>
+            <video class="section-video" autoplay muted loop>
+                <source src="assets/05.mp4" type="video/mp4">
+            </video>
+            <div class="speech-text"><i class="fas fa-puzzle-piece"></i> COMMUNITY-DRIVEN PROJECT WHERE EVERYONE CONTRIBUTES TO THE BIGGER PICTURE NOT JUST ANOTHER RANDOM SHITCOIN.</div>
+            <div class="speech-text alt"><i class="fas fa-sign-in-alt"></i> JOIN US NOW AND BE PART OF THE ADVENTURE</div>
+            <div class="speech-text"><i class="fas fa-star"></i> SUIKA SUIKA SUIKACHUUUU!!!</div>
+            <div class="comic-burst"></div>
+        </div>
+        <div class="section">
+            <h2><i class="fas fa-exclamation-circle"></i> DISCLAIMER</h2>
+            <div class="speech-text"><i class="fas fa-user-shield"></i> Our dev is based AF, building the future of Suichain with SUIKACHU!</div>
+            <div class="speech-text alt"><i class="fas fa-info-circle"></i> This is not financial advice. Always do your own research before investing.</div>
+            <img src="assets/3.jpg" alt="Disclaimer Image" class="section-image">
+            <div class="speech-text"><i class="fas fa-coins"></i> $SUIKACHU is a community-driven project, not a get-rich-quick scheme.</div>
+            <div class="comic-burst"></div>
+        </div>
+        <div class="section">
+            <h2><i class="fas fa-question-circle"></i> FAQ</h2>
+            <ul>
+                <li>
+                    <div class="speech-text">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div>
+                            <strong>How do I buy $SUIKACHU?</strong><br>
+                            1. Visit <a href="https://raidenx.io" target="_blank" style="color: #f7e7bc; text-decoration: underline;">RaidenX</a> and connect your Suichain wallet.<br>
+                            2. Copy the contract address (CA) from above.<br>
+                            3. Search for the CA in RaidenX’s token search bar.<br>
+                            4. Select $SUIKACHU, enter the amount, and confirm the purchase.
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="speech-text alt">
+                        <i class="fas fa-coins"></i>
+                        <div>
+                            <strong>What is $SUIKACHU?</strong><br>
+                            $SUIKACHU is a community-driven meme coin on Suichain, designed to spark excitement and build a vibrant ecosystem.
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="speech-text">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <strong>Is it safe to invest in $SUIKACHU?</strong><br>
+                            Cryptocurrency investments carry risks. Always do your own research (DYOR) and only invest what you can afford to lose.
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="speech-text alt">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <strong>How can I join the $SUIKACHU community?</strong><br>
+                            Join our <a href="https://t.me/suikachucoin" target="_blank" style="color: #f7e7bc; text-decoration: underline;">Telegram</a> or follow us on <a href="https://x.com/suikachucoin" target="_blank" style="color: #f7e7bc; text-decoration: underline;">X</a> to connect with the community and stay updated.
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <img src="assets/5.jpg" alt="FAQ Image" class="section-image">
+            <div class="comic-burst"></div>
+        </div>
+        <div class="section nft-minting">
+            <h2><i class="fas fa-gem"></i> NFT MINTING SOON</h2>
+            <video class="section-video" autoplay muted loop>
+                <source src="assets/03.mp4" type="video/mp4">
+            </video>
+            <div class="nft-starburst"></div>
+        </div>
+        <div class="social-links">
+            <a href="https://t.me/suikachucoin" target="_blank" title="Join our Telegram">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+            <a href="https://x.com/suikachucoin" target="_blank" title="Follow us on X">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        // GSAP animations for hero elements
+        gsap.from(".logo", { duration: 1.5, scale: 0, opacity: 0, ease: "elastic.out(1, 0.3)", delay: 0.5 });
+        gsap.from(".sparkle", { duration: 1, scale: 0, opacity: 0, stagger: 0.2, ease: "bounce.out", delay: 1 });
+        gsap.from(".suikachu-bubble", { duration: 0.8, scale: 0, opacity: 0, stagger: 0.2, ease: "bounce.out", delay: 1.2 });
+        gsap.from(".buy-button", { duration: 1, y: 50, opacity: 0, ease: "power3.out", delay: 1.5 });
+        gsap.from(".contract-address", { duration: 1, y: 50, opacity: 0, ease: "power3.out", delay: 1.8 });
+        gsap.from(".speech-bubble", { duration: 0.8, x: 30, opacity: 0, ease: "bounce.out", delay: 2 });
+        gsap.from(".social-links a", { duration: 0.8, y: 50, opacity: 0, stagger: 0.2, ease: "power2.out", delay: 3 });
+
+        // Section reveal
+        const sections = document.querySelectorAll('.section');
+        function revealSections() {
+            sections.forEach(section => {
+                if (!section.classList.contains('visible')) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.8) {
+                        console.log(`Revealing section: ${section.querySelector('h2').textContent}`);
+                        section.classList.add('visible');
+                        if (section.querySelector('.comic-burst')) {
+                            gsap.to(section.querySelector('.comic-burst'), { duration: 0.8, scale: 1, opacity: 1, ease: "elastic.out(1, 0.3)" });
+                        }
+                        if (section.querySelector('.nft-starburst') || section.querySelector('.partnership-starburst')) {
+                            gsap.to(section.querySelector('.nft-starburst, .partnership-starburst'), { duration: 0.8, scale: 1, opacity: 1, ease: "elastic.out(1, 0.3)" });
+                        }
+                        if (section.querySelector('.section-image')) {
+                            gsap.from(section.querySelector('.section-image'), { duration: 1, opacity: 0, y: 30, ease: "power2.out" });
+                        }
+                        if (section.querySelector('.section-video')) {
+                            gsap.from(section.querySelector('.section-video'), { duration: 1, opacity: 0, y: 30, ease: "power2.out" });
+                        }
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            revealSections();
+        });
+
+        // Initial reveal check
+        revealSections();
+
+        // Copy to clipboard function
+        function copyToClipboard(element) {
+            const text = element.textContent.replace('CA: ', '').trim();
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Contract address copied to clipboard!');
+            });
+        }
+
+        // Click event for contract address
+        document.querySelector('.contract-address').addEventListener('click', function () {
+            copyToClipboard(this);
+        });
+
+        // Lightning Cursor and Trailing Effect
+        const lightningCursor = document.getElementById('lightning-cursor');
+
+        document.addEventListener('mousemove', (e) => {
+            // Update cursor position
+            lightningCursor.style.left = e.clientX + 'px';
+            lightningCursor.style.top = e.clientY + 'px';
+
+            // Create a trailing spark
+            const spark = document.createElement('div');
+            spark.className = 'spark';
+            spark.style.left = e.clientX + 'px';
+            spark.style.top = e.clientY + 'px';
+            document.body.appendChild(spark);
+
+            // Randomize spark position slightly for a more natural effect
+            const offsetX = (Math.random() - 0.5) * 20;
+            const offsetY = (Math.random() - 0.5) * 20;
+            spark.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+
+            // Remove spark after animation
+            setTimeout(() => {
+                spark.remove();
+            }, 500);
+        });
+
+        // Ensure cursor is hidden when leaving the window
+        document.addEventListener('mouseleave', () => {
+            lightningCursor.style.display = 'none';
+        });
+
+        // Show cursor when re-entering the window
+        document.addEventListener('mouseenter', () => {
+            lightningCursor.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
